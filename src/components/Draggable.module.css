@@ -1,0 +1,30 @@
+.list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.title {
+  background: rgb(45, 185, 167);
+  margin: 0;
+  padding: 10px 0;
+}
+
+.item {
+  border: 1px solid rgb(122, 123, 124);
+  width: 30%;
+  text-align: center;
+}
+
+.subItem {
+  border: 1px dotted rgb(69, 90, 122);
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: opacity 1s;
+}
+
+.subItem:hover {
+  box-shadow: 5px 5px 5px #c2c0c0;
+  border: 1px dotted rgb(45, 185, 167);
+  transition: box-shadow 1s;
+}
