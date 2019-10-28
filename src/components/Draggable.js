@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Draggable.module.css';
 
 
@@ -15,14 +15,14 @@ const items = [
 ];
 
 const Draggable = () => {
+  const [draggedElementId, setDraggedElementIdt ] = useState('');
   const handleDragStart = (e) => {
-    e.dataTransfer.setData('item', e.target.id);
+    setDraggedElementIdt( e.target.id);
     // 可模拟隐藏被拖拽元素在原位置
     e.target.style.opacity = 0.01;
   };
   const handleDrop = (e) => {
-    const data = e.dataTransfer.getData('item');
-    const draggedEl = document.getElementById(data);
+    const draggedEl = document.getElementById(draggedElementId);
     // 加个定时器，使得 transition 生效
     setTimeout(() => draggedEl.style.opacity = 1, 100 );
    
@@ -32,6 +32,14 @@ const Draggable = () => {
       e.target.parentNode.insertBefore(draggedEl, e.target);
     }
   };
+  const handleDragEnter = (e) => {
+    const draggedEl = document.getElementById(draggedElementId);
+    if (e.target.id !== draggedElementId) {
+      console.log(e.target);
+      e.target.parentNode.insertBefore(draggedEl, e.target);
+    }
+  }
+  
   const handleDragOver = (e) => {
     e.preventDefault();
   }
@@ -50,6 +58,7 @@ const Draggable = () => {
               key={item.key}
               draggable={true}
               onDragStart={handleDragStart}
+              onDragEnter={handleDragEnter}
               id={`draggable-item-${item.key}`}
             >
               {item.name}
