@@ -3,8 +3,6 @@ import Single from './components/Single';
 import Draggable from './components/Draggable';
 
 function Drag() {
-
-  
   return (
     <div>
       {/* <Single /> */}
